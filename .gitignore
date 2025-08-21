@@ -1,0 +1,4 @@
+/target
+/test_logs
+**.html
+.bacon-locations

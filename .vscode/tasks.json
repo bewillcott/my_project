@@ -1,0 +1,162 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "rust: cargo doc",
+			"group": "build",
+			"type": "cargo",
+			"command": "doc",
+			"args": [
+				"--no-deps",
+				"--workspace"
+			],
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "rust: cargo doc (dev)",
+			"group": "build",
+			"type": "cargo",
+			"command": "doc",
+			"args": [
+				"--no-deps",
+				"--workspace",
+				"--document-private-items"
+			],
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		// {
+		// 	"label": "rust: cargo test (no backtrace)",
+		// 	"group": "test",
+		// 	"type": "cargo",
+		// 	"command": "test",
+		// 	"env": {
+		// 		"RUST_BACKTRACE": "0"
+		// 	},
+		// 	"problemMatcher": [
+		// 		"$rustc"
+		// 	]
+		// },
+		{
+			"label": "rust: cargo build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"type": "cargo",
+			"command": "build",
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "rust: cargo clean",
+			"group": "build",
+			"type": "cargo",
+			"command": "clean",
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "rust: cargo clippy",
+			"group": "test",
+			"type": "process",
+			"command": "cargo",
+			"args": [
+				"clippy"
+			],
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "rust: cargo miri test",
+			"group": "test",
+			"type": "process",
+			"command": "cargo",
+			"options": {
+				"env": {
+					"MIRIFLAGS": "-Zmiri-backtrace=0 -Zmiri-disable-isolation"
+				}
+			},
+			"args": [
+				"+nightly-2025-07-06",
+				"miri",
+				"test"
+			],
+			"problemMatcher": [
+				"$rustc"
+			]
+		},
+		{
+			"label": "bacon llvm-cov",
+			"type": "process",
+			"command": "bacon",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"args": [
+				"llvm-cov"
+			]
+		},
+		{
+			"label": "cargo llvm-cov html",
+			"type": "process",
+			"command": "cargo",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"args": [
+				"llvm-cov",
+				"nextest",
+				"--html"
+			]
+		},
+		{
+			"label": "mdbook build guide",
+			"type": "process",
+			"command": "mdbook",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"args": [
+				"build",
+				"guide"
+			]
+		},
+		{
+			"label": "mdbook serve guide",
+			"type": "process",
+			"command": "mdbook",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"args": [
+				"serve",
+				"guide"
+			]
+		},
+		{
+			"label": "mdbook serve guide --open",
+			"type": "process",
+			"command": "mdbook",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"args": [
+				"serve",
+				"guide",
+				"--open"
+			]
+		}
+	]
+}
