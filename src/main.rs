@@ -43,7 +43,9 @@ fn main() {
     config!("Operating system: Fedora Linux");
     config!("Version: 42");
 
-    info!("This is a test of the integration of the 'FLogging crate' and the custom handler and formatter.");
+    info!(
+        "This is a test of the integration of the 'FLogging crate' and the custom handler and formatter."
+    );
 
     println!("*** My Project ***");
 
