@@ -25,7 +25,6 @@
 //! # main file
 //!
 
-extern crate flogging;
 use flogging::*;
 use std::{error::Error, result::Result};
 
