@@ -28,8 +28,6 @@
 use std::fmt;
 use flogging::*;
 
-#[derive(Debug, Clone, Hash, PartialEq, Eq)]
-
 ///
 /// CSV format.
 ///
@@ -56,6 +54,7 @@ use flogging::*;
 /// 2025-08-21 19:26:47.801287,my_project::handlers::formatters::csv_formatter::tests->csv_format,SEVERE,"Hurricanes are windy!"
 /// ```
 ///
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub struct CsvFormatter {
     dt_fmt: String,
     fmt_string: String,
