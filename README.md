@@ -21,6 +21,10 @@ The `master` branch just holds the common project related files.
 
 The `Usage_Macros` branch is an example using the macros in `flogging`.
 
+#### [`Idea`]
+
+The `Idea` branch is an example of using a global `DEBUG_LEVEL` setting, to control all, or most, mod/file level loggers.
+
 ### [`Usage_Methods`]
 
 The `Usage_Methods` branch is an example using the methods in `flogging`.
@@ -34,3 +38,4 @@ The `Custom` branch is an example using both the macros and methods in `flogging
 [`Usage_Macros`]: https://github.com/bewillcott/my_project/tree/Usage_Macros
 [`Usage_Methods`]: https://github.com/bewillcott/my_project/tree/Usage_Methods
 [`Custom`]: https://github.com/bewillcott/my_project/tree/Custom
+[`Idea`]: https://github.com/bewillcott/my_project/tree/Idea
