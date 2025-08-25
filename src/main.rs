@@ -28,10 +28,15 @@
 use flogging::*;
 use std::{error::Error, result::Result};
 
+pub(crate) const DEBUG_LEVEL: Level = Level::ALL;
+
 fn do_something() {
-    let mut log = Logger::econsole_logger(module_path!());
-    log.set_fn_name("do_something")
-    .set_level(Level::FINEST);
+    let mut log = Logger::builder(module_path!())
+        .set_fn_name("do_something")
+        .add_econsole_handler()
+        .add_file_handler("test_logs/usage.log")
+        .set_level(DEBUG_LEVEL)
+        .build();
 
     log.entering();
 
@@ -51,9 +56,12 @@ fn do_something() {
 }
 
 fn error_prone() -> Result<(), Box<dyn Error>> {
-    let mut log = Logger::econsole_logger(module_path!());
-    log.set_fn_name("error_prone")
-    .set_level(Level::FINEST);
+    let mut log = Logger::builder(module_path!())
+        .set_fn_name("error_prone")
+        .add_econsole_handler()
+        .add_file_handler("test_logs/usage.log")
+        .set_level(DEBUG_LEVEL)
+        .build();
 
     log.entering();
     let rtn = Err(Box::from("Bad day!"));
@@ -62,10 +70,13 @@ fn error_prone() -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    let mut log = Logger::pconsole_logger(module_path!());
-    log.set_fn_name("main")
-    // .set_level(Level::FINEST);
-    .set_level(Level::FINEST);
+    let mut log = Logger::builder(module_path!())
+        .set_fn_name("main")
+        .add_pconsole_handler()
+        .remove_file("test_logs/usage.log")
+        .add_file_handler("test_logs/usage.log")
+        .set_level(DEBUG_LEVEL)
+        .build();
 
     log.entering();
     log.info("All logging macros accept the same parameters as `std::format!(...)`");
