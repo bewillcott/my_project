@@ -29,6 +29,11 @@ The `Idea` branch is an example of using a global `DEBUG_LEVEL` setting, to cont
 
 The `Usage_Methods` branch is an example using the methods in `flogging`.
 
+### [`Usage_Hybrid`]
+
+The `Usage_Hybrid` branch is an example of combining the benefits of both macros and
+methods.
+
 ### [`Custom`]
 
 The `Custom` branch is an example using both the macros and methods in `flogging`. In addition, it demonstrates the final code developed in the customization part of the `FLogging Guide`.
@@ -37,5 +42,6 @@ The `Custom` branch is an example using both the macros and methods in `flogging
 [`master`]: https://github.com/bewillcott/my_project/tree/master
 [`Usage_Macros`]: https://github.com/bewillcott/my_project/tree/Usage_Macros
 [`Usage_Methods`]: https://github.com/bewillcott/my_project/tree/Usage_Methods
+[`Usage_Hybrid`]: https://github.com/bewillcott/my_project/tree/Usage_Hybrid
 [`Custom`]: https://github.com/bewillcott/my_project/tree/Custom
 [`Idea`]: https://github.com/bewillcott/my_project/tree/Idea
