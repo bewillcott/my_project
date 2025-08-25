@@ -34,7 +34,7 @@ const_logger!({
         .add_console_handler()
         .remove_file("test_logs/usage.log")
         .add_file_handler("test_logs/usage.log")
-        .set_level(Level::FINEST)
+        .set_level(Level::ALL)
         .build()
 });
 
