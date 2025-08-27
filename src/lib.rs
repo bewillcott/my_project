@@ -25,25 +25,44 @@
 //! # My Project mod (Idea branch)
 //!
 
-mod core;
+mod my_core;
 
 pub(crate) use flogging::*;
-pub use core::*;
+pub use my_core::*;
 
-pub(crate) const DEBUG_LEVEL:Level = Level::ALL;
-// pub(crate) const DEBUG_LEVEL:Level = Level::OFF;
+//
+// Cargo.toml
+//
+// [dependencies]
+// ctor = "0.5.0"
+use ctor::*;
+
+// pub(crate) const DEBUG_LEVEL: Level = Level::ALL;
+pub(crate) const DEBUG_LEVEL:Level = Level::OFF;
+
+///
+/// Reset the log file each time `my_project` is loaded.
+///
+/// This is an alternative to using `remove_file()` in
+/// the individual mod/file setup commands.\
+/// Only useful if all child mods are using the same log file.
+///
+#[ctor]
+fn reset_log() {
+    Logger::remove_file("test_logs/usage.log");
+}
 
 #[cfg(test)]
-mod tests{
+mod tests {
     use super::*;
 
     #[test]
-    fn core(){
-        core::do_it();
+    fn control() {
+        my_core::control::do_it();
     }
 
     #[test]
-    fn control(){
-        core::control::do_it();
+    fn my_core() {
+        my_core::do_it();
     }
 }

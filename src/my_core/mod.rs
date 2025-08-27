@@ -1,6 +1,6 @@
 //
-// File Name:    control.rs
-// Directory:    src/core
+// File Name:    mod.rs
+// Directory:    src/my_core
 // Project Name: my_project
 //
 // Copyright (C) 2025 Bradley Willcott
@@ -22,17 +22,20 @@
 //
 
 //!
-//! # Control mod
+//! # Core mod
 //!
+
+pub mod control;
 
 use crate::*;
 
 const_logger!({
     Logger::builder(module_path!())
-        .add_console_handler()
-        .remove_file("test_logs/usage.log")
-        .add_file_handler("test_logs/usage.log")
-        .set_level(DEBUG_LEVEL)
+        .add_pconsole_handler()
+        //   ^^^^^^^^
+        // .add_file_handler("test_logs/usage.log")
+        .set_level(Level::INFO)
+        // .set_level(DEBUG_LEVEL)
         //         ^^^^^^^^^^^
         .build()
 });
@@ -40,6 +43,6 @@ const_logger!({
 #[logger]
 pub fn do_it() {
     entering!();
-    info!("Hello from `Control`.");
+    info!("This text came from the file `src/core/mod.rs`, just to let you know.");
     exiting!();
 }
