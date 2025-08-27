@@ -47,7 +47,7 @@ pub struct ConfileHandler {
 }
 
 impl ConfileHandler {
-    fn create(filename: &str) -> Result<Self, Error> {
+    fn _create(filename: &str) -> Result<Self, Error> {
         if filename.is_empty() {
             return Err(Error::new(InvalidInput, "'filename' must not be empty"));
         }
@@ -58,7 +58,6 @@ impl ConfileHandler {
             file_fmt: FormatType::Iso8601.create(None),
             file: {
                 let f = File::options().append(true).create(true).open(filename)?;
-
                 Some(f)
             },
             writer: None,
@@ -94,7 +93,7 @@ impl HandlerTrait for ConfileHandler {
     /// - `name` - This the `filename` of the log file.
     ///
     fn create(name: &str) -> Result<Self, Error> {
-        ConfileHandler::create(name)
+        ConfileHandler::_create(name)
     }
 
     ///
@@ -135,7 +134,11 @@ impl HandlerTrait for ConfileHandler {
                 writeln!(w, "{}", self.file_fmt.format(log_entry)).expect("writeln!() failed");
             } else {
                 println!("{}", self.con_fmt.format(log_entry));
-                self.file.as_mut().unwrap().write_all(buf.as_bytes()).expect("writeln!() failed");
+                self.file
+                    .as_mut()
+                    .unwrap()
+                    .write_all(buf.as_bytes())
+                    .expect("write_all() failed");
             }
         }
     }
@@ -163,8 +166,8 @@ impl HandlerTrait for ConfileHandler {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use regex::Regex;
     use std::io::Read;
+    use regex::Regex;
 
     #[test]
     fn confile_handler() {
@@ -316,9 +319,7 @@ $";
             .set_fn_name("confile_handler_test_mode")
             .add_custom_handler(
                 "ConfileHandler",
-                Box::new(
-                    ConfileHandler::create("").unwrap(),
-                ),
+                Box::new(ConfileHandler::create("").unwrap()),
             )
             .build();
     }
